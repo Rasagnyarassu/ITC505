@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Holy Grail Layout</title>
+<style>
+    body {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas:
+            "header header header"
+            "menu main content"
+            "footer footer footer";
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        grid-area: header;
+        background-color: #333;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        padding: 10px;
+    }
+    nav {
+        grid-area: menu;
+        background-color: #f1f1f1;
+        padding: 10px;
+    }
+    main {
+        grid-area: main;
+        background-color: #f1f1f1;
+        padding: 10px;
+    }
+    aside {
+        grid-area: content;
+        background-color: #f1f1f1;
+        padding: 10px;
+    }
+    footer {
+        grid-area: footer;
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <img height="120" width="1300" src="https://dynamic.brandcrowd.com/template/preview/design/7dc2da53-367a-41f8-b7e7-f70b3e857e6f?v=4&designTemplateVersion=1&size=design-preview-standalone-1x" alt="header img">
+
+    </header>
+    <nav>
+        <h2>Menu Side-Bar</h2>
+        <ul>
+            <li><a> Home </a></li>
+            <li><a> About </a></li>
+            <li><a> Contact </a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Main Content Area</h2>
+        <p>This is the main content area.</p>
+        <button onclick="changeColor()">Change Color</button>
+        <div class="main-content">
+            <div class="container">
+              <p>Here You Can Check A Number Whether it is Postive or Negative.</p>
+              <div class="userDetails">
+                <span>Please Enter a Valid Number.</span>
+                <input type="text" id="number" placeholder="Please Enter a Number."/>
+                <button type="submit" onclick="checkNumber()" class="checkBtn color-change-btn">Check Number</button>
+                <!-- <p class="initialStage">You Entered Number is.</p> -->
+              </div>
+            </div>
+          </div>      
+    </main>
+    <aside>
+        <h2>Advertisement</h2>
+        <a href="https://www.amazon.com/" target="_blank">
+            <img height="250" width="250" src="https://www.thesun.co.uk/wp-content/uploads/2023/01/51J6cQ63OJL.png" alt="Advertisement">     
+        </a>
+    </aside>
+    <footer>
+        <p>Last updated: <span id="lastModified"></span></p>
+        <p>
+            <strong>JavaScript Addendum:</strong> This script solves the problem of checking whether a number entered by the user is positive, negative, or zero. It achieves this by retrieving the user input, converting it to a number, and then using conditional statements to determine its sign. If the number is positive, it changes the background color of the main content area to green. If it is negative, it displays an alert indicating that the number is negative. If it is zero, it displays an alert indicating that the number is zero.
+        </p>
+        <p>
+            <strong>Difficulties Encountered:</strong> Initially, there was an issue with selecting the color change button element in the JavaScript. This was resolved by correcting the selector to properly target the button with the class "color-change-btn".
+        </p>
+    </footer>
+    <script>
+        function changeColor() {
+            document.querySelector('main').style.backgroundColor = 'lightblue';
+        }
+        var x = document.lastModified;
+        document.getElementById('lastModified').textContent = x;
+    </script> 
+    <script>
+    "use strict";
+const changeMsg = document.querySelector(".initialStage");
+// const checkButton = document.getElementById(".checkNumber");
+const colorChangeBtn = document.querySelector("color-change-btn");
+function checkNumber() {
+  // Get the value entered by the user
+  var number = document.getElementById("number").value;
+
+  // Check if the input is empty or not a number
+  if (number === "" || isNaN(number)) {
+    alert("Please enter a valid number!");
+    return;
+  }
+
+  // Convert the input to a number
+  number = parseFloat(number);
+
+  // Check if the number is positive, negative, or zero
+  if (number > 0) {
+    // changeMsg.textContent = You Entered Number is ${number};
+    //console.log(number);
+    alert("The entered number is positive.");
+
+    colorChangeBtn.style.backgroundColor = "green";
+  } else if (number < 0) {
+    alert("The entered number is negative.");
+  } else {
+    alert("The entered number is zero.");
+  }
+}
+ </script>
+</body>
+</html>
