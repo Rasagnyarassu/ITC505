@@ -39,7 +39,7 @@
 
    button {
        padding: 10px 20px;
-       margin-top: 10px;
+       margin: 10px 10px;
        background-color: #3498db;
        color: white;
        border: none;
@@ -63,17 +63,22 @@
        </div>
        <div id="level">
            <div class="question" id="question"></div>
-           <img id="levelImage" src="" alt="Level Image" style="max-width: 100%;">
+           <div>
+            <img id="levelImage" src="" alt="Level Image" style="max-width: 100%;">
+
+           </div>
            <div class="answers" id="answers"></div>
            <button id="nextButton">Next</button>
        </div>
        <div id="result"></div>
    </div>
    <footer>
-    <p>Process and Creative Choices: 
-        I chose to create an adventure game set in a forest environment to engage players in a journey of exploration and decision-making. Each level presents a different scenario, and I selected images that would immerse players in the forest setting. 
-        Challenges Faced and Overcoming Them: One challenge was designing the game flow to ensure it was engaging and intuitive. I overcame this by carefully planning each level and refining the game mechanics based on feedback. 
-        Insights Gained: Developing this game helped me understand the importance of balancing narrative and gameplay to create an enjoyable user experience. I also learned about the significance of visual elements in setting the tone and atmosphere of a game.</p>
+    <p><strong>Process and Creative Choices: </strong>
+        I chose to create an adventure game set in a forest environment to engage players in a journey of exploration and decision-making. Each level presents a different scenario, and I selected images that would immerse players in the forest setting.</p>
+       <p><strong>Challenges Faced and Overcoming Them:</strong> One challenge was designing the game flow to ensure it was engaging and intuitive. I overcame this by carefully planning each level and refining the game mechanics based on feedback. </p>
+        <p><strong>Insights Gained:</strong> Developing this game helped me understand the importance of balancing narrative and gameplay to create an enjoyable user experience. I also learned about the significance of visual elements in setting the tone and atmosphere of a game.</p>
+        <p>
+            The Adventure Game utilizes fundamental web technologies to create an interactive and engaging experience. HTML provides the structure and content of the game, including text, buttons, and images. CSS styles the game elements, ensuring a visually appealing layout and design. JavaScript adds interactivity, allowing players to make choices, progress through levels, and receive feedback. Together, these technologies enable the game to run smoothly in a web browser, providing users with a seamless and enjoyable adventure.</p>
        <p>Last updated: <span id="lastModified"></span></p>
    </footer>
    <script>
@@ -82,7 +87,7 @@
                question: 'Level 1: You find a path splitting into two. Which way do you go?',
                answers: ['Left', 'Right'],
                correctAnswer: 'Left',
-               image: 'https://www.shutterstock.com/image-photo/crossroads-two-different-directions-concept-260nw-786770815.jpg'
+               image:'https://www.shutterstock.com/image-photo/crossroads-two-different-directions-concept-260nw-786770815.jpg'
            },
            {
                question: 'Level 2: You come across a river. How do you cross it?',
@@ -151,6 +156,8 @@
            const level = levelsData[levelIndex];
            questionElement.textContent = level.question;
            levelImage.src = level.image;
+           levelImage.height = 300;
+    levelImage.width = 300;
            answerButtons.innerHTML = '';
            level.answers.forEach(answer => {
                const button = document.createElement('button');
@@ -162,16 +169,21 @@
        }
 
        function selectAnswer(selectedAnswer, correctAnswer) {
-           if (selectedAnswer === correctAnswer) {
-               resultElement.innerHTML = '<p>Correct!</p>';
-           } else {
-               resultElement.innerHTML = '<p>Incorrect!</p>';
-           }
-           nextButton.style.display = 'block';
-           document.querySelectorAll('.answer').forEach(button => {
-               button.disabled = true;
-           });
-       }
+    if (selectedAnswer === correctAnswer) {
+        resultElement.innerHTML = '<p>Correct!</p>';
+    } else {
+        resultElement.innerHTML = '<p>Incorrect! Game Over!</p>';
+        nextButton.style.display = 'none';
+        document.querySelectorAll('.answer').forEach(button => {
+            button.disabled = true;
+        });
+        return; // Stop the function execution
+    }
+    nextButton.style.display = 'block';
+    document.querySelectorAll('.answer').forEach(button => {
+        button.disabled = true;
+    });
+}
 
        function showNextLevel() {
            currentLevelIndex++;
