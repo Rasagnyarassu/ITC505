@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adventure Game</title>
+<style>
+   body {
+       font-family: Arial, sans-serif;
+       margin: 0;
+       padding: 0;
+   }
+
+   .container {
+       max-width: 800px;
+       margin: 0 auto;
+       padding: 20px;
+       text-align: center;
+   }
+
+   h1 {
+       margin-bottom: 20px;
+       font-size: 32px;
+       color: #333;
+   }
+
+   #level {
+       display: none;
+   }
+
+   .question {
+       margin-bottom: 20px;
+   }
+
+   .answers {
+       display: inline-block;
+       text-align: left;
+   }
+
+   button {
+       padding: 10px 20px;
+       margin-top: 10px;
+       background-color: #3498db;
+       color: white;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+   }
+
+   footer {
+       margin-top: 50px;
+       background-color: #f1f1f1;
+       padding: 10px;
+       text-align: center;
+   }
+</style>
+</head>
+<body>
+   <div class="container">
+       <h1>Adventure Game</h1>
+       <div id="start">
+           <button id="startButton">Start Game</button>
+       </div>
+       <div id="level">
+           <div class="question" id="question"></div>
+           <img id="levelImage" src="" alt="Level Image" style="max-width: 100%;">
+           <div class="answers" id="answers"></div>
+           <button id="nextButton">Next</button>
+       </div>
+       <div id="result"></div>
+   </div>
+   <footer>
+    <p>Process and Creative Choices: 
+        I chose to create an adventure game set in a forest environment to engage players in a journey of exploration and decision-making. Each level presents a different scenario, and I selected images that would immerse players in the forest setting. 
+        Challenges Faced and Overcoming Them: One challenge was designing the game flow to ensure it was engaging and intuitive. I overcame this by carefully planning each level and refining the game mechanics based on feedback. 
+        Insights Gained: Developing this game helped me understand the importance of balancing narrative and gameplay to create an enjoyable user experience. I also learned about the significance of visual elements in setting the tone and atmosphere of a game.</p>
+       <p>Last updated: <span id="lastModified"></span></p>
+   </footer>
+   <script>
+       const levelsData = [
+       {
+               question: 'Level 1: You find a path splitting into two. Which way do you go?',
+               answers: ['Left', 'Right'],
+               correctAnswer: 'Left',
+               image: 'https://www.shutterstock.com/image-photo/crossroads-two-different-directions-concept-260nw-786770815.jpg'
+           },
+           {
+               question: 'Level 2: You come across a river. How do you cross it?',
+               answers: ['Swim', 'Find a bridge', 'Use a boat'],
+               correctAnswer: 'Find a bridge',
+               image:'https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/enchanted-bridge-in-the-forest-debra-and-dave-vanderlaan.jpg'
+           },
+           {
+               question: 'Level 3: You reach a clearing in the forest. What do you see?',
+               answers: ['A cave', 'A treasure chest', 'A friendly creature'],
+               correctAnswer: 'A cave',
+               image: 'https://us.images.westend61.de/0000840008pw/woman-standing-on-rocks-in-cave-at-forest-CAVF00085.jpg'
+           },
+           {
+               question: 'Level 4: You hear a noise. What do you do?',
+               answers: ['Investigate', 'Run away', 'Ignore it'],
+               correctAnswer: 'Investigate',
+               image: 'https://d1g9yur4m4naub.cloudfront.net/images/Article_Images/ImageForArticle_1113_1683038632519631.jpg'
+           },
+           {
+               question: 'Level 5: You find a map. What is the next destination?',
+               answers: ['Mountain', 'Lake', 'Valley'],
+               correctAnswer: 'Mountain',
+               image: 'https://img.freepik.com/premium-photo/majestic-mountain-with-lush-forest-its-foot_923558-3020.jpg'
+           },
+           {
+               question: 'Level 6: You encounter a mysterious figure. What do you do?',
+               answers: ['Approach', 'Hide', 'Ask for directions'],
+               correctAnswer: 'Approach',
+               image: 'https://cei.org/wp-content/uploads/2021/08/Forest-GettyImages-1256208918-578x324-c-default.jpg'
+           },
+           {
+               question: 'Level 7: You find a key. What does it unlock?',
+               answers: ['Chest', 'Door', 'Box'],
+               correctAnswer: 'Door',
+               image: 'https://spectralcodex.com/x/taiwan-taipei-shilin-wenjianshan-bunker-1.jpg'
+           },
+           {
+               question: 'Level 8: You see a shadow. Who or what is it?',
+               answers: ['Animal', 'Another adventurer', 'Ghost'],
+               correctAnswer: 'Another adventurer',
+               image: 'https://m.media-amazon.com/images/I/61zvRUVMb0L._AC_UF1000,1000_QL80_.jpg'
+           },
+       ];
+
+       const startButton = document.getElementById('startButton');
+       const nextButton = document.getElementById('nextButton');
+       const questionElement = document.getElementById('question');
+       const answerButtons = document.getElementById('answers');
+       const levelElement = document.getElementById('level');
+       const levelImage = document.getElementById('levelImage');
+       const resultElement = document.getElementById('result');
+       let currentLevelIndex = 0;
+
+       startButton.addEventListener('click', startGame);
+       nextButton.addEventListener('click', showNextLevel);
+
+       function startGame() {
+           startButton.style.display = 'none';
+           resultElement.innerHTML = '';
+           showLevel(0);
+           level.style.display = 'block';
+       }
+
+       function showLevel(levelIndex) {
+           const level = levelsData[levelIndex];
+           questionElement.textContent = level.question;
+           levelImage.src = level.image;
+           answerButtons.innerHTML = '';
+           level.answers.forEach(answer => {
+               const button = document.createElement('button');
+               button.textContent = answer;
+               button.classList.add('answer');
+               button.addEventListener('click', () => selectAnswer(answer, level.correctAnswer));
+               answerButtons.appendChild(button);
+           });
+       }
+
+       function selectAnswer(selectedAnswer, correctAnswer) {
+           if (selectedAnswer === correctAnswer) {
+               resultElement.innerHTML = '<p>Correct!</p>';
+           } else {
+               resultElement.innerHTML = '<p>Incorrect!</p>';
+           }
+           nextButton.style.display = 'block';
+           document.querySelectorAll('.answer').forEach(button => {
+               button.disabled = true;
+           });
+       }
+
+       function showNextLevel() {
+           currentLevelIndex++;
+           if (currentLevelIndex < levelsData.length) {
+               showLevel(currentLevelIndex);
+               nextButton.style.display = 'none';
+               document.querySelectorAll('.answer').forEach(button => {
+                   button.disabled = false;
+               });
+           } else {
+               questionElement.textContent = '';
+               levelImage.src = 'https://ik.imagekit.io/storybird/images/cc18abc6-1380-4563-92bc-7cbf1a49e94b/0_188510622.png';
+               answerButtons.innerHTML = '';
+               resultElement.innerHTML = '<p>Game completed!</p>';
+               nextButton.style.display = 'none';
+           }
+       }
+
+       var x = document.lastModified;
+       document.getElementById('lastModified').textContent = x;
+   </script>
+</body>
+</html>
