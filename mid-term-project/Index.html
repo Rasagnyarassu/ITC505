@@ -170,15 +170,15 @@
        }
 
        function selectAnswer(selectedAnswer, correctAnswer) {
+   function selectAnswer(selectedAnswer, correctAnswer) {
     if (selectedAnswer === correctAnswer) {
         resultElement.innerHTML = '<p>Correct!</p>';
     } else {
-        resultElement.innerHTML = '<p>Incorrect! Game Over!</p>';
-        nextButton.style.display = 'none';
-        document.querySelectorAll('.answer').forEach(button => {
-            button.disabled = true;
-        });
-        return; // Stop the function execution
+        resultElement.innerHTML = '<p>Incorrect! Game Over</p>';
+        setTimeout(() => {
+            window.location.href = 'index.html'; // Change 'index.html' to your homepage URL
+        }, 2000); // Redirect after 2 seconds (2000 milliseconds)
+        return; // Stop further execution
     }
     nextButton.style.display = 'block';
     document.querySelectorAll('.answer').forEach(button => {
