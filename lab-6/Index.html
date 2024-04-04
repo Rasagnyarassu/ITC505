@@ -3,207 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adventure Game</title>
+<title>My Holy Grail Layout</title>
 <style>
-   body {
-       font-family: Arial, sans-serif;
-       margin: 0;
-       padding: 0;
-   }
-
-   .container {
-       max-width: 800px;
-       margin: 0 auto;
-       padding: 20px;
-       text-align: center;
-   }
-
-   h1 {
-       margin-bottom: 20px;
-       font-size: 32px;
-       color: #333;
-   }
-
-   #level {
-       display: none;
-   }
-
-   .question {
-       margin-bottom: 20px;
-   }
-
-   .answers {
-       display: inline-block;
-       text-align: left;
-   }
-
-   button {
-       padding: 10px 20px;
-       margin: 10px 10px;
-       background-color: #3498db;
-       color: white;
-       border: none;
-       border-radius: 5px;
-       cursor: pointer;
-   }
-
-   footer {
-       margin-top: 50px;
-       background-color: #f1f1f1;
-       padding: 10px;
-       text-align: center;
-   }
+    body {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas:
+            "header header header"
+            "menu main content"
+            "footer footer footer";
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        grid-area: header;
+        background-color: #333;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        padding: 10px;
+    }
+    nav {
+        grid-area: menu;
+        background-color: #f1f1f1;
+        padding: 10px;
+    }
+    main {
+        grid-area: main;
+        background-color: #f1f1f1;
+        padding: 10px;
+    }
+    aside {
+        grid-area: content;
+        background-color: #f1f1f1;
+        padding: 10px;
+    }
+    footer {
+        grid-area: footer;
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
 </style>
 </head>
 <body>
-   <div class="container">
-       <h1>Adventure Game</h1>
-       <div id="start">
-           <button id="startButton">Start Game</button>
-       </div>
-       <div id="level">
-           <div class="question" id="question"></div>
-           <div>
-            <img id="levelImage" src="" alt="Level Image" style="max-width: 100%;">
+    <header>
+        <img height="120" width="1300" src="https://dynamic.brandcrowd.com/template/preview/design/7dc2da53-367a-41f8-b7e7-f70b3e857e6f?v=4&designTemplateVersion=1&size=design-preview-standalone-1x" alt="header img">
 
-           </div>
-           <div class="answers" id="answers"></div>
-           <button id="nextButton">Next</button>
-       </div>
-       <div id="result"></div>
-   </div>
-   <footer>
-    <p><strong>Process and Creative Choices: </strong>
-        I chose to create an adventure game set in a forest environment to engage players in a journey of exploration and decision-making. Each level presents a different scenario, and I selected images that would immerse players in the forest setting.</p>
-       <p><strong>Challenges Faced and Overcoming Them:</strong> One challenge was designing the game flow to ensure it was engaging and intuitive. I overcame this by carefully planning each level and refining the game mechanics based on feedback. </p>
-        <p><strong>Insights Gained:</strong> Developing this game helped me understand the importance of balancing narrative and gameplay to create an enjoyable user experience. I also learned about the significance of visual elements in setting the tone and atmosphere of a game.</p>
+    </header>
+    <nav>
+        <h2>Menu Side-Bar</h2>
+        <ul>
+            <li><a> Home </a></li>
+            <li><a> About </a></li>
+            <li><a> Contact </a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Main Content Area</h2>
+        <p>This is the main content area.</p>
+        <button onclick="changeColor()">Change Color</button>
+        <div class="main-content">
+            <div class="container">
+              <p>Here You Can Check A Number Whether it is Postive or Negative.</p>
+              <div class="userDetails">
+                <span>Please Enter a Valid Number.</span>
+                <input type="text" id="number" placeholder="Please Enter a Number."/>
+                <button type="submit" onclick="checkNumber()" class="checkBtn color-change-btn">Check Number</button>
+                <!-- <p class="initialStage">You Entered Number is.</p> -->
+              </div>
+            </div>
+          </div>      
+    </main>
+    <aside>
+        <h2>Advertisement</h2>
+        <a href="https://www.amazon.com/Apple-Smartwatch-Midnight-Aluminum-Detection/dp/B0CHXCXKPD/ref=sr_1_1_sspa?crid=3R5F109BA1E9I&dib=eyJ2IjoiMSJ9.uT38kY9yHaIy7LP3rCFC17jnsX2peJxABB70QHd1giMOqqixI-YxrAtn9gcdWM4waXKSmYCf_5aK52D30eCLCmRRRmbrJMlFk_jjNwIH2U76abXgNxqJ0qIAOHBRGJQAOo2IGaSeQSJYvk1PaGbIoxB26tXGLNMsGjMIO3zw-0fdINCoUD6889CcbpKjfdlQ4mXiX404MaRlFIYYZ8FvtWYPZCK65XI-K0IQZS0QSaY.YkvdSt6Iw5UzqZj20sQ78U_-ysQxSpF3eTu8zW3nLgc&dib_tag=se&keywords=apple+watch&qid=1712248665&sprefix=apple%2Caps%2C134&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1" target="_blank">
+            <img height="250" width="250" src="https://m.media-amazon.com/images/I/819CwRIckoL._AC_SX522_.jpg" alt="Advertisement">     
+        </a>
+    </aside>
+    <footer>
+        <p>Last updated: <span id="lastModified"></span></p>
         <p>
-            The Adventure Game utilizes fundamental web technologies to create an interactive and engaging experience. HTML provides the structure and content of the game, including text, buttons, and images. CSS styles the game elements, ensuring a visually appealing layout and design. JavaScript adds interactivity, allowing players to make choices, progress through levels, and receive feedback. Together, these technologies enable the game to run smoothly in a web browser, providing users with a seamless and enjoyable adventure.</p>
-       <p>Last updated: <span id="lastModified"></span></p>
-   </footer>
-   <script>
-       const levelsData = [
-       {
-               question: 'Level 1: You find a path splitting into two. Which way do you go?',
-               answers: ['Left', 'Right'],
-               correctAnswer: 'Left',
-               image:'https://www.shutterstock.com/image-photo/crossroads-two-different-directions-concept-260nw-786770815.jpg'
-           },
-           {
-               question: 'Level 2: You come across a river. How do you cross it?',
-               answers: ['Swim', 'Find a bridge', 'Use a boat'],
-               correctAnswer: 'Find a bridge',
-               image:'https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/enchanted-bridge-in-the-forest-debra-and-dave-vanderlaan.jpg'
-           },
-           {
-               question: 'Level 3: You reach a clearing in the forest. What do you see?',
-               answers: ['A cave', 'A treasure chest', 'A friendly creature'],
-               correctAnswer: 'A cave',
-               image: 'https://us.images.westend61.de/0000840008pw/woman-standing-on-rocks-in-cave-at-forest-CAVF00085.jpg'
-           },
-           {
-               question: 'Level 4: You hear a noise. What do you do?',
-               answers: ['Investigate', 'Run away', 'Ignore it'],
-               correctAnswer: 'Investigate',
-               image: 'https://d1g9yur4m4naub.cloudfront.net/images/Article_Images/ImageForArticle_1113_1683038632519631.jpg'
-           },
-           {
-               question: 'Level 5: You find a map. What is the next destination?',
-               answers: ['Mountain', 'Lake', 'Valley'],
-               correctAnswer: 'Mountain',
-               image: 'https://img.freepik.com/premium-photo/majestic-mountain-with-lush-forest-its-foot_923558-3020.jpg'
-           },
-           {
-               question: 'Level 6: You encounter a mysterious figure. What do you do?',
-               answers: ['Approach', 'Hide', 'Ask for directions'],
-               correctAnswer: 'Approach',
-               image: 'https://cei.org/wp-content/uploads/2021/08/Forest-GettyImages-1256208918-578x324-c-default.jpg'
-           },
-           {
-               question: 'Level 7: You find a key. What does it unlock?',
-               answers: ['Chest', 'Door', 'Box'],
-               correctAnswer: 'Door',
-               image: 'https://spectralcodex.com/x/taiwan-taipei-shilin-wenjianshan-bunker-1.jpg'
-           },
-           {
-               question: 'Level 8: You see a shadow. Who or what is it?',
-               answers: ['Animal', 'Another adventurer', 'Ghost'],
-               correctAnswer: 'Another adventurer',
-               image: 'https://m.media-amazon.com/images/I/61zvRUVMb0L._AC_UF1000,1000_QL80_.jpg'
-           },
-       ];
+            <strong>JavaScript Addendum:</strong> This script solves the problem of checking whether a number entered by the user is positive, negative, or zero. It achieves this by retrieving the user input, converting it to a number, and then using conditional statements to determine its sign. If the number is positive, it changes the background color of the main content area to green. If it is negative, it displays an alert indicating that the number is negative. If it is zero, it displays an alert indicating that the number is zero.
+        </p>
+        <p>
+            <strong>Difficulties Encountered:</strong> Initially, there was an issue with selecting the color change button element in the JavaScript. This was resolved by correcting the selector to properly target the button with the class "color-change-btn".
+        </p>
+    </footer>
+    <script>
+        function changeColor() {
+            document.querySelector('main').style.backgroundColor = 'lightblue';
+        }
+        var x = document.lastModified;
+        document.getElementById('lastModified').textContent = x;
+    </script> 
+    <script>
+    "use strict";
+const changeMsg = document.querySelector(".initialStage");
+// const checkButton = document.getElementById(".checkNumber");
+const colorChangeBtn = document.querySelector("color-change-btn");
+function checkNumber() {
+  // Get the value entered by the user
+  var number = document.getElementById("number").value;
 
-       const startButton = document.getElementById('startButton');
-       const nextButton = document.getElementById('nextButton');
-       const questionElement = document.getElementById('question');
-       const answerButtons = document.getElementById('answers');
-       const levelElement = document.getElementById('level');
-       const levelImage = document.getElementById('levelImage');
-       const resultElement = document.getElementById('result');
-       let currentLevelIndex = 0;
+  // Check if the input is empty or not a number
+  if (number === "" || isNaN(number)) {
+    alert("Please enter a valid number!");
+    return;
+  }
 
-       startButton.addEventListener('click', startGame);
-       nextButton.addEventListener('click', showNextLevel);
+  // Convert the input to a number
+  number = parseFloat(number);
 
-       function startGame() {
-           startButton.style.display = 'none';
-           resultElement.innerHTML = '';
-           showLevel(0);
-           level.style.display = 'block';
-       }
+  // Check if the number is positive, negative, or zero
+  if (number > 0) {
+    // changeMsg.textContent = You Entered Number is ${number};
+    //console.log(number);
+    alert("The entered number is positive.");
 
-       function showLevel(levelIndex) {
-           const level = levelsData[levelIndex];
-           questionElement.textContent = level.question;
-           levelImage.src = level.image;
-           levelImage.height = 300;
-    levelImage.width = 300;
-           answerButtons.innerHTML = '';
-           level.answers.forEach(answer => {
-               const button = document.createElement('button');
-               button.textContent = answer;
-               button.classList.add('answer');
-               button.addEventListener('click', () => selectAnswer(answer, level.correctAnswer));
-               answerButtons.appendChild(button);
-           });
-       }
-
-       function selectAnswer(selectedAnswer, correctAnswer) {
-    if (selectedAnswer === correctAnswer) {
-        resultElement.innerHTML = '<p>Correct!</p>';
-    } else {
-        resultElement.innerHTML = '<p>Incorrect! Game Over!</p>';
-        nextButton.style.display = 'none';
-        document.querySelectorAll('.answer').forEach(button => {
-            button.disabled = true;
-        });
-        return; // Stop the function execution
-    }
-    nextButton.style.display = 'block';
-    document.querySelectorAll('.answer').forEach(button => {
-        button.disabled = true;
-    });
+    colorChangeBtn.style.backgroundColor = "green";
+  } else if (number < 0) {
+    alert("The entered number is negative.");
+  } else {
+    alert("The entered number is zero.");
+  }
 }
-
-       function showNextLevel() {
-           currentLevelIndex++;
-           if (currentLevelIndex < levelsData.length) {
-               showLevel(currentLevelIndex);
-               nextButton.style.display = 'none';
-               document.querySelectorAll('.answer').forEach(button => {
-                   button.disabled = false;
-               });
-           } else {
-               questionElement.textContent = '';
-               levelImage.src = 'https://ik.imagekit.io/storybird/images/cc18abc6-1380-4563-92bc-7cbf1a49e94b/0_188510622.png';
-               answerButtons.innerHTML = '';
-               resultElement.innerHTML = '<p>Game completed!</p>';
-               nextButton.style.display = 'none';
-           }
-       }
-
-       var x = document.lastModified;
-       document.getElementById('lastModified').textContent = x;
-   </script>
+ </script>
 </body>
 </html>
