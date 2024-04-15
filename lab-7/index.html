@@ -63,9 +63,15 @@
             <p id="story-content"></p>
         </div>
     </div>
-
-    <script>
-        // JavaScript code for Mad Libs game functionality
+    <footer>
+        <p>Last updated: 
+            <span id="lastModified"></span>
+        </p>
+    </footer>
+    <script type="text/javascript">
+        var x = document.lastModified;
+        document.getElementById('lastModified').textContent = x;
+        
         document.getElementById('madlib-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
@@ -78,8 +84,7 @@
             const adverb = document.getElementById('adverb').value;
 
             // Generate the story
-            const story =
-            `${noun} ${verb} ${preposition} the museum and felt ${adjective}. Later, ${pronoun} decided to visit an art gallery.`;
+            const story = `${noun} ${verb} ${preposition} the museum and felt ${adjective}. Later, ${pronoun} decided to visit an art gallery.`;
 
             // Display the story
             document.getElementById('story-content').textContent = story;
@@ -89,3 +94,4 @@
 </body>
 
 </html>
+
