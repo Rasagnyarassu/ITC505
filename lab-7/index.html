@@ -67,6 +67,17 @@
         <p>Last updated: 
             <span id="lastModified"></span>
         </p>
+        <p>Addendum:</p>
+    <ul>
+        <li>The <head> section contains the necessary meta tags and a title for the page.</li>
+        <li>Inside the <style> tag, there are some basic CSS styles for the page layout and form elements.</li>
+        <li>In the <body> section, there's a <div> with the class "container" that holds the content of the game.</li>
+        <li>Inside the container <div>, there's an <h1> heading and a paragraph explaining the game.</li>
+        <li>The <form> element with the id "madlib-form" contains input fields for various parts of speech (noun, pronoun, verb, etc.).</li>
+        <li>There's a submit button at the end of the form.</li>
+        <li>Below the form, there's another <div> with the id "story" that will display the generated story. Initially, this div is hidden (style="display: none;").</li>
+        <li>Finally, there's a <script> tag at the end of the body that handles form submission. It prevents the default form submission behavior, gets the input values, generates a story based on the inputs, and displays the story in the "story" div.</li>
+    </ul>
     </footer>
     <script type="text/javascript">
         var x = document.lastModified;
